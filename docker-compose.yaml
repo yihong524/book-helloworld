@@ -1,0 +1,19 @@
+version: "3"
+services:
+  django:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080: 8080
+    volumes:
+      - ./mysite:/mysite
+    command: python manage.py runserver 0.0.0.0:8080
+  postgresql:
+    image: postgres:10
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
